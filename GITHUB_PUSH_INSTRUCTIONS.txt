@@ -1,0 +1,101 @@
+ShopSphere GitHub Push Instructions
+===================================
+
+Project folder
+--------------
+C:\Games\Java\Project\shopsphere-java-web-project
+
+Before pushing
+--------------
+1. Open the project folder in VS Code or your preferred IDE.
+2. Confirm the project builds. Maven has been installed here:
+   C:\Users\shash\Tools\apache-maven-3.10.0\bin\mvn.cmd
+
+   In a new PowerShell/VS Code terminal, this should work:
+   mvn clean package
+
+   If Windows still says "mvn is not recognized", use the full installed path:
+   C:\Users\shash\Tools\apache-maven-3.10.0\bin\mvn.cmd clean package
+
+3. Confirm the generated WAR file exists:
+   target\shopsphere.war
+4. Do not commit real database passwords, .env files, target folders, IDE metadata, or private files.
+5. Keep Guide.txt in the parent folder if it is only for your assignment reference. It is not required inside the GitHub repository unless your evaluator asks for it.
+
+Create the GitHub repository
+----------------------------
+1. Go to https://github.com and sign in.
+2. Click New repository.
+3. Repository name: shopsphere-java-web-project
+4. Set visibility to Public unless your evaluator allows private repositories.
+5. Do not select Add a README, .gitignore, or license because this project already contains those files.
+6. Click Create repository.
+
+Push from Windows PowerShell
+----------------------------
+Run these commands from the project folder:
+
+cd C:\Games\Java\Project\shopsphere-java-web-project
+git init
+git status
+git add .
+git commit -m "Build ShopSphere Java web project"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/shopsphere-java-web-project.git
+git push -u origin main
+
+Replace YOUR_USERNAME with your actual GitHub username.
+
+If Git asks you to sign in
+--------------------------
+1. Use GitHub browser/device authentication if Git prompts for it.
+2. If password authentication fails, create a Personal Access Token on GitHub and use it as the password.
+3. Recommended token scope for a normal push: repo.
+
+If you already initialized Git earlier
+-------------------------------------
+Check the remote:
+
+git remote -v
+
+If the remote is wrong:
+
+git remote set-url origin https://github.com/YOUR_USERNAME/shopsphere-java-web-project.git
+
+Then push:
+
+git push -u origin main
+
+Files reviewers should see
+--------------------------
+- README.md with setup, features, rubric mapping, and smoke-test checklist.
+- pom.xml with Maven dependencies and WAR packaging.
+- database/schema.sql with MySQL tables and sample products.
+- src/main/java with DAO, model, service, servlet, utility, and exception classes.
+- src/main/webapp with JSP views and CSS.
+- .gitignore excluding generated/private files.
+
+Recommended final checks
+------------------------
+1. Open your GitHub repository in a browser.
+2. Confirm all source folders are visible.
+3. Confirm target/ is not visible.
+4. Confirm README.md renders properly.
+5. Copy the repository URL and submit it with your presentation file.
+
+Optional Git commands for later updates
+---------------------------------------
+After making changes:
+
+git status
+git add .
+git commit -m "Describe the update"
+git push
+
+Troubleshooting
+---------------
+- "git is not recognized": install Git for Windows, then reopen PowerShell.
+- "mvn is not recognized": install Maven and add it to PATH, then reopen PowerShell.
+- "remote origin already exists": run git remote -v, then use git remote set-url origin ...
+- "rejected because remote contains work": run git pull --rebase origin main, resolve conflicts if any, then push again.
+- Accidentally committed target/ or credentials: remove them, commit the fix, and rotate any exposed password immediately.
